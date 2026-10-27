@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { extractIncomingText, sendWhatsAppText, type EvolutionWebhook } from "@/lib/whatsapp/evolution";
+import { inspectIncoming, sendWhatsAppText, type EvolutionWebhook } from "@/lib/whatsapp/evolution";
 import { handleIncomingMessage } from "@/lib/whatsapp/handler";
 import { jidToPhone } from "@/lib/whatsapp/phone";
 import { requestSecret, safeEqual } from "@/lib/security/secret";
@@ -17,8 +17,15 @@ export async function POST(req: Request) {
   }
 
   const payload = (await req.json().catch(() => null)) as EvolutionWebhook | null;
-  const incoming = payload ? extractIncomingText(payload) : null;
-  if (!incoming) return NextResponse.json({ ok: true, ignored: true });
+  if (!payload) {
+    console.warn("[evolution webhook] ignorado: corpo inválido (não é JSON)");
+    return NextResponse.json({ ok: true, ignored: "invalid body" });
+  }
+  const incoming = inspectIncoming(payload);
+  if (!incoming.ok) {
+    console.info(`[evolution webhook] ignorado: ${incoming.reason}`);
+    return NextResponse.json({ ok: true, ignored: incoming.reason });
+  }
 
   const phone = jidToPhone(incoming.jid);
   const db = createAdminClient();
