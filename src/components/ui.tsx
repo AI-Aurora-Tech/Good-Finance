@@ -88,8 +88,11 @@ export function EmptyState({ children }: { children: ReactNode }) {
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2 text-lg font-bold tracking-tight", className)}>
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white">G</span>
-      Good Finance
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/brand/logo-mark.svg" alt="" width={32} height={32} className="h-8 w-8" />
+      <span>
+        Good <span className="text-brand-600">Finance</span>
+      </span>
     </span>
   );
 }

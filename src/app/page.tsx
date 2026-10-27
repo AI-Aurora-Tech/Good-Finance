@@ -1,5 +1,5 @@
 import { ButtonLink, Logo } from "@/components/ui";
-import { Banknote, BarChart3, CreditCard, Landmark, MessageCircle, PiggyBank, ShieldCheck, Target } from "lucide-react";
+import { BarChart3, CreditCard, Landmark, MessageCircle, PiggyBank, ShieldCheck, Target } from "lucide-react";
 
 const features = [
   { icon: MessageCircle, title: "Assistente no WhatsApp", text: "Mande “gastei 50 no mercado” e pronto: o lançamento já está categorizado no seu painel." },
@@ -52,7 +52,8 @@ export default function Home() {
 
         <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e5ddd5] p-4 shadow-xl ring-1 ring-slate-200">
           <div className="mb-3 flex items-center gap-2 rounded-xl bg-brand-700 px-3 py-2 text-white">
-            <Banknote className="h-5 w-5" /> <span className="font-semibold">Good Finance</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo-mark.svg" alt="" width={24} height={24} className="h-6 w-6 rounded-md bg-white p-0.5" /> <span className="font-semibold">Good Finance</span>
           </div>
           <div className="space-y-2 text-sm">
             <p className="ml-auto w-fit rounded-lg bg-[#dcf8c6] px-3 py-2 shadow-sm">gastei 42,90 no ifood</p>
