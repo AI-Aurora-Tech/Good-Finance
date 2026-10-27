@@ -105,6 +105,8 @@ As URLs de login (Authentication → URL Configuration) ficam para a Etapa 4, de
    Ex.: `https://app.goodfinance.com.br`
 8. **Deployments → ⋯ no último deploy → Redeploy**.
 
+> Se a Vercel não deixar salvar `NEXT_PUBLIC_SUPABASE_URL` ou `NEXT_PUBLIC_SUPABASE_ANON_KEY` (aviso sobre prefixo público), use os nomes `SUPABASE_URL` e `SUPABASE_ANON_KEY` — o app aceita os dois.
+
 > Variáveis que começam com `NEXT_PUBLIC_` só passam a valer depois de um novo deploy. Sempre faça **Redeploy** ao alterá-las.
 
 A rotina diária de sincronização dos bancos (`vercel.json`, todo dia às 09:00 UTC = 06:00 de Brasília) é criada automaticamente. Confira em **Settings → Cron Jobs**.
